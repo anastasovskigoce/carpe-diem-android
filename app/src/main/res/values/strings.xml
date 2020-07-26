@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">CarpeDiem</string>
+    <string name="app_name">Carpe Diem</string>
+    <string name="quoteTitle">Quote</string>
+
+    <string name="lorem_ipsum_short" translatable="false">Lorem ipsum</string>
+    <string name="lorem_ipsum_long" translatable="false">Maecenas vehicula eros sem, quis tristique ipsum condimentum vitae. Pellentesque in molestie tortor. Ut congue congue neque at consectetu</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
