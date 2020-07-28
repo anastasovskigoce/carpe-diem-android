@@ -1,4 +1,4 @@
-package com.alanford.carpediem.quotedetails
+package com.alanford.carpediem.quotelist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

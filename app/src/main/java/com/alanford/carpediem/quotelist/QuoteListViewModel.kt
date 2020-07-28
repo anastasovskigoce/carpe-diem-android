@@ -1,4 +1,4 @@
-package com.alanford.carpediem.quotedetails
+package com.alanford.carpediem.quotelist
 
 import com.alanford.carpediem.data.Quote
 import com.alanford.carpediem.data.QuoteRepository

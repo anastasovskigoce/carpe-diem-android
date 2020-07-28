@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.alanford.carpediem.R
 import com.alanford.carpediem.data.Quote
 
@@ -14,29 +16,45 @@ import com.alanford.carpediem.data.Quote
  */
 class QuoteFragment : Fragment() {
 
-    private lateinit var quote: Quote
+    private lateinit var quoteTextView: TextView
+    private lateinit var authorTextView: TextView
+
+    private val quoteViewModel: QuoteViewModel by lazy {
+        QuoteViewModel()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        quote = Quote(quoteText = "A journey of a thousand miles begins with one step", author = "Confucius")
+
+        val safeArgs: QuoteFragmentArgs by navArgs()
+        val quoteId = safeArgs.quoteId
+
+        quoteViewModel.loadQuote(quoteId)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val view = layoutInflater.inflate(R.layout.quote_detail, container, false)
 
-        val quoteTextView  = view.findViewById<TextView>(R.id.quote_text)
-        quoteTextView.apply {
-            this.text = quote.quoteText
-        }
-
-        val authorTextView = view.findViewById<TextView>(R.id.quote_author)
-        authorTextView.apply {
-            this.text = quote.author
-        }
+        quoteTextView = view.findViewById(R.id.quote_text)
+        authorTextView = view.findViewById(R.id.quote_author)
 
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        quoteViewModel.quoteLiveData.observe(
+            viewLifecycleOwner,
+            Observer { quote ->
+                quote?.let {
+                    quoteTextView.text = it.quoteText
+                    authorTextView.text = it.author
+                }
+            }
+        )
     }
 }

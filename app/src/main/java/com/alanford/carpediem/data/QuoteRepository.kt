@@ -1,6 +1,5 @@
 package com.alanford.carpediem.data
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
@@ -8,14 +7,14 @@ import androidx.lifecycle.MutableLiveData
 // Created by ganastasovski on 7/26/20.
 // Copyright (c) 2020 alarm.com. All rights reserved.
 //
-class QuoteRepository private constructor(context: Context) {
+class QuoteRepository private constructor() {
 
     companion object {
         private var INSTANCE: QuoteRepository? = null
 
-        fun initialize(context: Context) {
+        fun initialize() {
             if (this.INSTANCE == null) {
-                INSTANCE = QuoteRepository(context)
+                INSTANCE = QuoteRepository()
             }
         }
 
@@ -27,27 +26,34 @@ class QuoteRepository private constructor(context: Context) {
     private var quotes: MutableLiveData<List<Quote>>? = null
 
     /**
+     * Returns a particular quote
+     * @param quoteId the ID of the quote you want to return
+     */
+    fun getQuote(quoteId: String): LiveData<Quote?> {
+        return MutableLiveData<Quote>().apply {
+            this.value = quotes?.value?.find { it.id == quoteId }
+        }
+    }
+
+    /**
      * Returns the list of top quotes
      */
     fun getQuotes(): LiveData<List<Quote>>? {
         if (quotes == null) {
             quotes = MutableLiveData<List<Quote>>().apply {
-                this.value = generateFakeData()
+                this.value = mutableListOf<Quote>().apply {
+                    for (counter in 0 until 100) {
+                        this.add(
+                            Quote(
+                                id = counter.toString(),
+                                quoteText = "Quote $counter",
+                                author = "Author $counter"
+                            )
+                        )
+                    }
+                }
             }
         }
         return quotes
-    }
-
-    private fun generateFakeData(): List<Quote> {
-        return mutableListOf<Quote>().apply {
-            for (counter in 0 until 100) {
-                this.add(
-                    Quote(
-                        quoteText = "Quote $counter",
-                        author = "Author $counter"
-                    )
-                )
-            }
-        }
     }
 }
