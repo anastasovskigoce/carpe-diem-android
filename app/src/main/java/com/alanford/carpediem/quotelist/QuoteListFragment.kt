@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alanford.carpediem.R
 import com.alanford.carpediem.data.Quote
-import com.alanford.carpediem.quotedetails.QuoteListAdapter
-import com.alanford.carpediem.quotedetails.QuoteListViewModel
 
 
 /**
@@ -21,14 +19,9 @@ import com.alanford.carpediem.quotedetails.QuoteListViewModel
  */
 class QuoteListFragment : Fragment() {
 
-    companion object {
-        fun newInstance(): QuoteListFragment {
-            return QuoteListFragment()
-        }
-    }
-
     private lateinit var quoteListRecyclerView: RecyclerView
-    private var quoteListAdapter: QuoteListAdapter = QuoteListAdapter(emptyList())
+    private var quoteListAdapter: QuoteListAdapter =
+        QuoteListAdapter(emptyList())
 
     private val quoteListViewModel: QuoteListViewModel by lazy {
         QuoteListViewModel()

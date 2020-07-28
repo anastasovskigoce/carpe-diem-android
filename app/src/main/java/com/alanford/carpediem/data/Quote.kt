@@ -5,7 +5,7 @@ package com.alanford.carpediem.data
 // Copyright (c) 2020 alanford. All rights reserved.
 //
 data class Quote(
-    private var id: String = "",
+    var id: String = "-1",
     var quoteText: String = "",
     var author: String = ""
 )
