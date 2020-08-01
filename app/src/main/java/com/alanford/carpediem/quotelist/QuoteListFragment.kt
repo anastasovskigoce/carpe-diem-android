@@ -60,11 +60,13 @@ class QuoteListFragment : Fragment() {
         quoteListViewModel.quotesLiveData.observe(
             viewLifecycleOwner,
             Observer { quotes ->
+                quotes.getContentIfNotHandled()?.let {
                 progressBar.visibility = View.GONE
                 quoteListRecyclerView.visibility = View.VISIBLE
 
-                quoteListAdapter = QuoteListAdapter(quotes)
+                quoteListAdapter = QuoteListAdapter(quotes.peekContent())
                 quoteListRecyclerView.adapter = quoteListAdapter
+                }
             }
         )
 
@@ -80,11 +82,5 @@ class QuoteListFragment : Fragment() {
         )
 
         quoteListViewModel.fetchQuotes()
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        quoteListViewModel.quotesLiveData.removeObservers(viewLifecycleOwner)
-        quoteListViewModel.errorGettingData.removeObservers(viewLifecycleOwner)
     }
 }
