@@ -2,7 +2,6 @@ package com.alanford.carpediem
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -12,19 +11,30 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.alanford.carpediem.data.QuoteRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.navigateUp
+import com.alanford.carpediem.networking.Networking
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
+    object Constants {
+        const val CARPE_DIEM_API_URL: String = "https://sieze-the-day.herokuapp.com/"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setupNavigationAndMenu()
+
+        Networking.initialize()
+
+    }
+
+    private fun setupNavigationAndMenu() {
         val host: NavHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment? ?: return
 
         // Set up Action Bar
@@ -38,14 +48,11 @@ class MainActivity : AppCompatActivity() {
             drawerLayout
         )
 
-
         setupActionBar(navController, appBarConfiguration)
 
         setupNavigationMenu(navController)
 
         setupBottomNavMenu(navController)
-
-        QuoteRepository.initialize()
     }
 
     private fun setupBottomNavMenu(navController: NavController) {

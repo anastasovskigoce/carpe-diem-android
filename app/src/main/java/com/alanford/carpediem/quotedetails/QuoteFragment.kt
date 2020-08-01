@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.alanford.carpediem.R
 import com.alanford.carpediem.data.Quote
+import com.alanford.carpediem.quotelist.QuoteListViewModel
 
 /**
  *  This Fragment will display the quote details
@@ -19,16 +21,15 @@ class QuoteFragment : Fragment() {
     private lateinit var quoteTextView: TextView
     private lateinit var authorTextView: TextView
 
-    private val quoteViewModel: QuoteViewModel by lazy {
-        QuoteViewModel()
-    }
+    private lateinit var quoteViewModel: QuoteViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val safeArgs: QuoteFragmentArgs by navArgs()
-        val quoteId = safeArgs.quoteId
+        val quoteId = safeArgs.quote
 
+        quoteViewModel = ViewModelProviders.of(this).get(QuoteViewModel::class.java)
         quoteViewModel.loadQuote(quoteId)
     }
 
