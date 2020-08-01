@@ -76,6 +76,7 @@ class QuoteListFragment : Fragment() {
                 if (isError) {
                     progressBar.visibility = View.GONE
                     quoteListRecyclerView.visibility = View.VISIBLE
+                    //TODO show error message instead of a toast
                     Toast.makeText(context, "An error occurred getting the quotes", Toast.LENGTH_SHORT).show()
                 }
             }
