@@ -10,6 +10,7 @@
 
     <!--    Main - top rated quotes-->
     <string name="top_rated_quote">Top Rated Quotes</string>
+    <string name="rating">Rating:</string>
 
     <!--    Settings-->
     <string name="settings">Settings</string>

@@ -46,8 +46,9 @@ class QuoteRepository private constructor() {
                         this.add(
                             Quote(
                                 id = counter.toString(),
-                                quoteText = "Quote $counter",
-                                author = "Author $counter"
+                                quoteText = "Maecenas vehicula eros sem, quis tristique ipsum condimentum vitae. $counter",
+                                author = "Author $counter",
+                                rating = counter + 100
                             )
                         )
                     }

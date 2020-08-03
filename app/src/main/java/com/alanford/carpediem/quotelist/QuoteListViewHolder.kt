@@ -17,6 +17,7 @@ class QuoteListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val quoteText: TextView = view.findViewById(R.id.quote_text)
     private val author: TextView = view.findViewById(R.id.quote_author)
+    private val rating: TextView = view.findViewById(R.id.rating)
 
     init {
         view.setOnClickListener {
@@ -29,5 +30,7 @@ class QuoteListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         this.quote = quote
         quoteText.text = this.quote.quoteText
         author.text = this.quote.author
+        rating.text = this.quote.rating.toString()
+
     }
 }
