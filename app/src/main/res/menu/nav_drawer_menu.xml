@@ -7,19 +7,19 @@
             android:title="@string/home" />
 
         <item
-            android:id="@+id/favorites"
+            android:id="@+id/favoritesFragment"
             android:icon="@drawable/ic_star_black_24dp"
             android:title="@string/favorites" />
     </group>
 
     <group android:id="@+id/secondary">
         <item
-            android:id="@+id/settings"
+            android:id="@+id/settingsFragment"
             android:icon="@drawable/ic_settings_black_24dp"
             android:title="@string/settings" />
 
         <item
-            android:id="@+id/about"
+            android:id="@+id/aboutFragment"
             android:icon="@drawable/ic_info_outline_black_24dp"
             android:title="@string/about" />
     </group>
