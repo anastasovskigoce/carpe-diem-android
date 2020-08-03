@@ -7,5 +7,6 @@ package com.alanford.carpediem.data
 data class Quote(
     var id: String = "-1",
     var quoteText: String = "",
-    var author: String = ""
+    var author: String = "",
+    var rating: Int = 1
 )
