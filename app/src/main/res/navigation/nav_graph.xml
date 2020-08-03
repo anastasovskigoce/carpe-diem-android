@@ -18,6 +18,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/quoteDetailFragment"
         android:name="com.alanford.carpediem.quotedetails.QuoteFragment"
@@ -28,4 +29,28 @@
             android:defaultValue="-1"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.alanford.carpediem.about.AboutFragment"
+        android:label="@string/about"
+        tools:layout="@layout/about_layout" />
+
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.alanford.carpediem.favorites.Favorites"
+        tools:layout="@layout/favorites_layout"
+        android:label="@string/favorites" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.alanford.carpediem.settings.SettingsFragment"
+        tools:layout="@layout/settings_layout"
+        android:label="@string/settings" />
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.alanford.carpediem.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>
