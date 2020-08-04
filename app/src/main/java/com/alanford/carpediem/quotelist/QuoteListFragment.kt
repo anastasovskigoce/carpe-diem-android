@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alanford.carpediem.R
 import com.alanford.carpediem.data.Quote
 import com.alanford.carpediem.networking.Networking
+import com.alanford.carpediem.quotelist.QuoteListState.*
 import retrofit2.Call
 
 
@@ -26,6 +28,7 @@ import retrofit2.Call
  */
 class QuoteListFragment : Fragment() {
 
+    private lateinit var errorTextView: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var quoteListRecyclerView: RecyclerView
     private var quoteListAdapter: QuoteListAdapter = QuoteListAdapter(emptyList())
@@ -50,6 +53,7 @@ class QuoteListFragment : Fragment() {
         }
 
         progressBar = view.findViewById(R.id.progress_bar_quote_list)
+        errorTextView = view.findViewById(R.id.error_text_view)
 
         return view
     }
@@ -59,29 +63,41 @@ class QuoteListFragment : Fragment() {
 
         quoteListViewModel.quotesLiveData.observe(
             viewLifecycleOwner,
-            Observer { quotes ->
-                quotes.getContentIfNotHandled()?.let {
-                progressBar.visibility = View.GONE
-                quoteListRecyclerView.visibility = View.VISIBLE
-
-                quoteListAdapter = QuoteListAdapter(quotes.peekContent())
-                quoteListRecyclerView.adapter = quoteListAdapter
+            Observer {
+                val event = it.getContentIfNotHandled()
+                if (event == null){
+                    handleLoading()
                 }
-            }
-        )
 
-        quoteListViewModel.errorGettingData.observe(
-            viewLifecycleOwner,
-            Observer { isError ->
-                if (isError) {
-                    progressBar.visibility = View.GONE
-                    quoteListRecyclerView.visibility = View.VISIBLE
-                    //TODO show error message instead of a toast
-                    Toast.makeText(context, "An error occurred getting the quotes", Toast.LENGTH_SHORT).show()
+                when (event) {
+                    is ListFetchedState -> handleQuotesFetched(event.quotes)
+                    is LoadingState -> handleLoading()
+                    is ErrorState -> handleError()
                 }
             }
         )
 
         quoteListViewModel.fetchQuotes()
+    }
+
+    private fun handleQuotesFetched(quotes: List<Quote>) {
+        progressBar.visibility = View.GONE
+        errorTextView.visibility = View.GONE
+        quoteListRecyclerView.visibility = View.VISIBLE
+
+        quoteListAdapter = QuoteListAdapter(quotes)
+        quoteListRecyclerView.adapter = quoteListAdapter
+    }
+
+    private fun handleLoading() {
+        progressBar.visibility = View.VISIBLE
+        errorTextView.visibility = View.GONE
+        quoteListRecyclerView.visibility = View.GONE
+    }
+
+    private fun handleError() {
+        progressBar.visibility = View.GONE
+        errorTextView.visibility = View.VISIBLE
+        quoteListRecyclerView.visibility = View.GONE
     }
 }

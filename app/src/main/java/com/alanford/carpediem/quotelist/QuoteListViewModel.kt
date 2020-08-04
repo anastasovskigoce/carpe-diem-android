@@ -1,6 +1,5 @@
 package com.alanford.carpediem.quotelist
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alanford.carpediem.data.Event
@@ -18,25 +17,25 @@ class QuoteListViewModel : ViewModel() {
 
     private val network = Networking.get()
 
-    val errorGettingData = MutableLiveData<Boolean>()
-
-    private val _quotesLiveData = MutableLiveData<Event<List<Quote>>>()
-    val quotesLiveData : MutableLiveData<Event<List<Quote>>>
+    private val _quotesLiveData = MutableLiveData<Event<QuoteListState>>()
+    val quotesLiveData: MutableLiveData<Event<QuoteListState>>
         get() = _quotesLiveData
+
+    init {
+        _quotesLiveData.value = Event(QuoteListState.LoadingState)
+    }
 
     fun fetchQuotes() {
         val quotesRequest: Call<List<Quote>> = network.carpeDiemApi.fetchQuotes()
 
         quotesRequest.enqueue(object : Callback<List<Quote>> {
             override fun onFailure(call: Call<List<Quote>>, t: Throwable) {
-                errorGettingData.value = true
-                Log.e("Network-OnFailure", "Error fetching quotes")
+                _quotesLiveData.value = Event(QuoteListState.ErrorState(""))
             }
 
             override fun onResponse(call: Call<List<Quote>>, response: Response<List<Quote>>) {
                 val quotesResponse = response.body() ?: mutableListOf()
-                _quotesLiveData.value = Event(quotesResponse)
-                Log.i("Network-OnResponse", "Successfully received list of quotes")
+                _quotesLiveData.value = Event(QuoteListState.ListFetchedState(quotesResponse))
             }
         })
     }

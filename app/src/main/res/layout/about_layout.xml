@@ -22,6 +22,7 @@
         android:layout_marginStart="@dimen/margin_x_medium"
         android:text="@string/about_text_primary"
         android:textSize="@dimen/text_size_medium_large"
+        android:textStyle="italic"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/carpe_diem_image" />
 
@@ -34,6 +35,7 @@
         android:layout_marginTop="@dimen/margin_x_medium"
         android:text="@string/about_text_secondary"
         android:textSize="@dimen/text_size_medium_large"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/about_text_primary" />

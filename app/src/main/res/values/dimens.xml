@@ -5,7 +5,6 @@
     <dimen name="capre_diem_image_width_height">150dp</dimen>
     <dimen name="about_text_margins">8dp</dimen>
 
-
     <!--    Text Size-->
     <dimen name="text_size_xx_small">10sp</dimen>
     <dimen name="text_size_x_small">12sp</dimen>

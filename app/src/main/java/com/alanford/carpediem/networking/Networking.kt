@@ -14,6 +14,9 @@ import java.util.concurrent.TimeUnit
 class Networking private constructor() {
 
     companion object {
+        const val READ_TIMEOUT = 60L
+        const val CONNECT_TIMEOUT = 60L
+
         private var INSTANCE: Networking? = null
 
         fun initialize() {
@@ -28,10 +31,9 @@ class Networking private constructor() {
     }
 
     private var okHttpClient: OkHttpClient = OkHttpClient.Builder()
-        .readTimeout(60, TimeUnit.SECONDS)
-        .connectTimeout(60, TimeUnit.SECONDS)
+        .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+        .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
         .build()
-
 
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(MainActivity.Constants.CARPE_DIEM_API_URL)

@@ -9,9 +9,11 @@ import com.alanford.carpediem.data.Quote
 // Copyright (c) 2020 alanford. All rights reserved.
 //
 class QuoteViewModel : ViewModel() {
-    val quoteLiveData = MutableLiveData<Quote>()
+    private val _quoteLiveData = MutableLiveData<Quote>()
+    val quoteLiveData: MutableLiveData<Quote>
+            get() = _quoteLiveData
 
     fun loadQuote(quote: Quote) {
-        quoteLiveData.value = quote
+        _quoteLiveData.value = quote
     }
 }

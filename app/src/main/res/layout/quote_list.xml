@@ -12,10 +12,22 @@
         android:minHeight="50dp"
         android:minWidth="50dp" />
 
+    <TextView
+        android:id="@+id/error_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:text="@string/error_top_rated_quotes"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/text_size_large"
+        android:visibility="gone" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/quote_list"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 </FrameLayout>
 
