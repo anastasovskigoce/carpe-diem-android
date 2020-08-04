@@ -21,7 +21,7 @@ class QuoteListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     init {
         view.setOnClickListener {
-            val action = QuoteListFragmentDirections.actionQuoteListFragmentToQuoteFragment(quote.id)
+            val action = QuoteListFragmentDirections.actionQuoteListFragmentToQuoteFragment(quote)
             it.findNavController().navigate(action)
         }
     }
