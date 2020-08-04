@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/quote_text"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.alanford.carpediem.quotedetails.QuoteViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_medium"
-        android:layout_marginStart="@dimen/margin_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/primary_text"
-        android:textStyle="italic"
-        android:textSize="@dimen/text_size_large"
-        tools:text="@string/lorem_ipsum_long" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/quote_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_medium_large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quote_text"
-        android:textSize="@dimen/text_size_medium_large"
-        android:textColor="@color/secondary_text"
-        tools:text="@string/lorem_ipsum_short" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/quote_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:textColor="@color/primary_text"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="italic"
+            android:text="@{viewModel.quoteLiveData.quoteText}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/lorem_ipsum_long" />
+
+        <TextView
+            android:id="@+id/quote_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium_large"
+            android:textColor="@color/secondary_text"
+            android:text="@{viewModel.quoteLiveData.author}"
+            android:textSize="@dimen/text_size_medium_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quote_text"
+            tools:text="@string/lorem_ipsum_short" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

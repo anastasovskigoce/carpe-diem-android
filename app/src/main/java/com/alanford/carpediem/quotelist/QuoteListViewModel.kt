@@ -30,7 +30,7 @@ class QuoteListViewModel : ViewModel() {
 
         quotesRequest.enqueue(object : Callback<List<Quote>> {
             override fun onFailure(call: Call<List<Quote>>, t: Throwable) {
-                _quotesLiveData.value = Event(QuoteListState.ErrorState(""))
+                _quotesLiveData.value = Event(QuoteListState.ErrorState)
             }
 
             override fun onResponse(call: Call<List<Quote>>, response: Response<List<Quote>>) {

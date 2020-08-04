@@ -9,5 +9,5 @@ import com.alanford.carpediem.data.Quote
 sealed class QuoteListState {
     object LoadingState : QuoteListState()
     data class ListFetchedState(val quotes: List<Quote>) : QuoteListState()
-    data class ErrorState(val errorMessage: String) : QuoteListState()
+    object ErrorState : QuoteListState()
 }
