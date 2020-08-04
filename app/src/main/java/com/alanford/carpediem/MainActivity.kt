@@ -2,6 +2,7 @@ package com.alanford.carpediem
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -44,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         val drawerLayout: DrawerLayout? = findViewById(R.id.main_drawer_layout)
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home_dest, R.id.favorites),
+            setOf(R.id.home_dest, R.id.favoritesFragment),
             drawerLayout
         )
 
@@ -53,6 +54,17 @@ class MainActivity : AppCompatActivity() {
         setupNavigationMenu(navController)
 
         setupBottomNavMenu(navController)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val retValue = super.onCreateOptionsMenu(menu)
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        if (navigationView == null) {
+            menuInflater.inflate(R.menu.nav_drawer_menu, menu)
+            return true
+        }
+
+        return retValue
     }
 
     private fun setupBottomNavMenu(navController: NavController) {

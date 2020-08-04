@@ -12,5 +12,7 @@ import kotlinx.android.parcel.Parcelize
 data class Quote(
     var id: String = "-1",
     @SerializedName("quote") var quoteText: String = "",
-    var author: String = ""
+    var author: String = "",
+    var rating: Int = 1
 ) : Parcelable
+
