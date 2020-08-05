@@ -38,6 +38,7 @@ class QuoteListFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         quoteListViewModel = ViewModelProviders.of(this).get(QuoteListViewModel::class.java)
+        quoteListViewModel.fetchQuotes()
     }
 
     override fun onCreateView(
@@ -63,21 +64,14 @@ class QuoteListFragment : Fragment() {
 
         quoteListViewModel.quotesLiveData.observe(
             viewLifecycleOwner,
-            Observer {
-                val event = it.getContentIfNotHandled()
-                if (event == null){
-                    handleLoading()
-                }
-
-                when (event) {
-                    is ListFetchedState -> handleQuotesFetched(event.quotes)
+            Observer { state ->
+                when (state) {
+                    is ListFetchedState -> handleQuotesFetched(state.quotes)
                     is LoadingState -> handleLoading()
                     is ErrorState -> handleError()
                 }
             }
         )
-
-        quoteListViewModel.fetchQuotes()
     }
 
     private fun handleQuotesFetched(quotes: List<Quote>) {

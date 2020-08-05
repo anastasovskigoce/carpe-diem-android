@@ -2,7 +2,6 @@ package com.alanford.carpediem.quotelist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.alanford.carpediem.data.Event
 import com.alanford.carpediem.data.Quote
 import com.alanford.carpediem.networking.Networking
 import retrofit2.Call
@@ -17,25 +16,30 @@ class QuoteListViewModel : ViewModel() {
 
     private val network = Networking.get()
 
-    private val _quotesLiveData = MutableLiveData<Event<QuoteListState>>()
-    val quotesLiveData: MutableLiveData<Event<QuoteListState>>
+    private val _quotesLiveData = MutableLiveData<QuoteListState>()
+    val quotesLiveData: MutableLiveData<QuoteListState>
         get() = _quotesLiveData
 
     init {
-        _quotesLiveData.value = Event(QuoteListState.LoadingState)
+        _quotesLiveData.value = QuoteListState.LoadingState
     }
 
     fun fetchQuotes() {
+        // we only want to fetch the list of quotes if it is not present
+        if(_quotesLiveData.value is QuoteListState.ListFetchedState){
+            return
+        }
+
         val quotesRequest: Call<List<Quote>> = network.carpeDiemApi.fetchQuotes()
 
         quotesRequest.enqueue(object : Callback<List<Quote>> {
             override fun onFailure(call: Call<List<Quote>>, t: Throwable) {
-                _quotesLiveData.value = Event(QuoteListState.ErrorState)
+                _quotesLiveData.value = QuoteListState.ErrorState
             }
 
             override fun onResponse(call: Call<List<Quote>>, response: Response<List<Quote>>) {
                 val quotesResponse = response.body() ?: mutableListOf()
-                _quotesLiveData.value = Event(QuoteListState.ListFetchedState(quotesResponse))
+                _quotesLiveData.value = QuoteListState.ListFetchedState(quotesResponse)
             }
         })
     }
