@@ -18,6 +18,12 @@
     <dimen name="text_size_xxx_large">45sp</dimen>
     <dimen name="text_size_xxxx_large">56sp</dimen>
 
+    <!--    Icons Size-->
+    <dimen name="icon_small">18dp</dimen>
+    <dimen name="icon_medium">24dp</dimen>
+    <dimen name="icon_large">36dp</dimen>
+    <dimen name="icon_x_large">48dp</dimen>
+
     <!--    Margin-->
     <dimen name="margin_xx_small">2dp</dimen>
     <dimen name="margin_x_small">4dp</dimen>
@@ -25,6 +31,16 @@
     <dimen name="margin_x_medium">8dp</dimen>
     <dimen name="margin_medium">16dp</dimen>
     <dimen name="margin_medium_large">24dp</dimen>
+
+    <!--    Padding-->
+    <dimen name="padding_xx_small">2dp</dimen>
+    <dimen name="padding_x_small">4dp</dimen>
+    <dimen name="padding_small">6dp</dimen>
+    <dimen name="padding_x_medium">8dp</dimen>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_medium_large">24dp</dimen>
+
+
 
     <!--    Height-->
     <dimen name="list_row_height">72dp</dimen>
