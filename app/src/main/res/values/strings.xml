@@ -13,6 +13,9 @@
     <string name="rating">Rating:</string>
     <string name="error_top_rated_quotes">Awww… snap :( An error occurred while fetching the quotes from the server. Please try again later!</string>
 
+    <!--    Quote Detail-->
+    <string name="quote_detail_error_sharing">"An error occurred while retrieving this quote"</string>
+
     <!--    Settings-->
     <string name="settings">Settings</string>
 

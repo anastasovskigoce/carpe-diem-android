@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="viewModel"
-            type="com.alanford.carpediem.quotedetails.QuoteViewModel" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/share"
+            android:layout_width="@dimen/icon_x_large"
+            android:layout_height="@dimen/icon_x_large"
+            android:layout_marginEnd="@dimen/margin_medium_large"
+            android:importantForAccessibility="no"
+            android:padding="@dimen/padding_x_medium"
+            android:src="@drawable/ic_share_black_24dp"
+            app:layout_constraintBottom_toTopOf="@+id/quote_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.815" />
 
         <TextView
             android:id="@+id/quote_text"
@@ -21,7 +29,6 @@
             android:textColor="@color/primary_text"
             android:textSize="@dimen/text_size_large"
             android:textStyle="italic"
-            android:text="@{viewModel.quoteLiveData.quoteText}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +42,6 @@
             android:layout_marginEnd="@dimen/margin_medium"
             android:layout_marginTop="@dimen/margin_medium_large"
             android:textColor="@color/secondary_text"
-            android:text="@{viewModel.quoteLiveData.author}"
             android:textSize="@dimen/text_size_medium_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quote_text"

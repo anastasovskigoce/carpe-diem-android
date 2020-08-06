@@ -1,5 +1,6 @@
 package com.alanford.carpediem.quotelist
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.alanford.carpediem.data.Quote
@@ -17,7 +18,7 @@ class QuoteListViewModel : ViewModel() {
     private val network = Networking.get()
 
     private val _quotesLiveData = MutableLiveData<QuoteListState>()
-    val quotesLiveData: MutableLiveData<QuoteListState>
+    val quotesLiveData: LiveData<QuoteListState>
         get() = _quotesLiveData
 
     init {
