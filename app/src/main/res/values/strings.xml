@@ -7,6 +7,7 @@
 
     <!--    Favorites-->
     <string name="favorites">Favorites</string>
+    <string name="such_emptiness">Wow… such emptiness. Start adding quotes to have them show up in your favorites list</string>
 
     <!--    Main - top rated quotes-->
     <string name="top_rated_quote">Top Rated Quotes</string>

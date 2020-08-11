@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/favoritesFragment"
-        android:name="com.alanford.carpediem.favorites.Favorites"
+        android:name="com.alanford.carpediem.favorites.FavoritesFragment"
         tools:layout="@layout/favorites_layout"
         android:label="@string/favorites" />
 

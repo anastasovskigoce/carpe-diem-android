@@ -16,6 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.ui.navigateUp
 import com.alanford.carpediem.networking.Networking
+import com.alanford.carpediem.repository.FavoriteQuotesRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         setupNavigationAndMenu()
 
         Networking.initialize()
+
+        FavoriteQuotesRepository.initialize(this)
 
     }
 
