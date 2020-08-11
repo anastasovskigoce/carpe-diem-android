@@ -8,12 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.alanford.carpediem.R
 import com.alanford.carpediem.extensions.setButtonFade
+import com.alanford.carpediem.repository.FavoriteQuotesRepository
 
 /**
  *  This Fragment will display the quote details
@@ -22,7 +22,8 @@ class QuoteFragment : Fragment() {
 
     private lateinit var quoteTextView: TextView
     private lateinit var authorTextView: TextView
-    private lateinit var shareImage: ImageView
+    private lateinit var shareImageView: ImageView
+    private lateinit var favoriteImageView: ImageView
 
     private lateinit var quoteViewModel: QuoteViewModel
 
@@ -45,13 +46,21 @@ class QuoteFragment : Fragment() {
 
         quoteTextView = view.findViewById(R.id.quote_text)
         authorTextView = view.findViewById(R.id.quote_author)
-        shareImage = view.findViewById<ImageView>(R.id.share).apply {
+
+        shareImageView = view.findViewById<ImageView>(R.id.share).apply {
             setOnClickListener {
                 quoteViewModel.shareButtonClicked(getString(R.string.quote_detail_error_sharing))
             }
         }
 
-        shareImage.setButtonFade()
+        favoriteImageView = view.findViewById<ImageView>(R.id.favorite).apply {
+            setOnClickListener {
+                quoteViewModel.favoritesButtonClicked()
+            }
+        }
+
+        shareImageView.setButtonFade()
+        favoriteImageView.setButtonFade()
 
         return view
     }
@@ -74,11 +83,17 @@ class QuoteFragment : Fragment() {
             }
         )
 
+        quoteViewModel.quoteFavorite.observe(
+            viewLifecycleOwner,
+            Observer {
+                favoriteImageView.setImageResource(getFavoriteImageView(it != null))
+            }
+        )
+
         //observe event
         quoteViewModel.shareButtonClicked.observe(
             viewLifecycleOwner,
             Observer { event ->
-                // Only proceed if the event has never been handled
                 event.getContentIfNotHandled()?.let { quoteDetailsAction ->
 
                     val sendIntent: Intent = Intent().apply {
@@ -92,5 +107,24 @@ class QuoteFragment : Fragment() {
                 }
             }
         )
+
+        quoteViewModel.favoritesButtonClicked.observe(
+            viewLifecycleOwner,
+            Observer { event ->
+                event.getContentIfNotHandled()?.let { quoteDetailsAction ->
+                    when (quoteDetailsAction) {
+                        is QuoteDetailsAction.FavoritesAdd -> {
+                            favoriteImageView.setImageResource(R.drawable.ic_star_black_24dp)
+                        }
+                        is QuoteDetailsAction.FavoritesRemove -> {
+                            favoriteImageView.setImageResource(R.drawable.ic_star_border_black_24dp)
+                        }
+                    }
+                }
+            }
+        )
     }
+
+    private fun getFavoriteImageView(isFavorite: Boolean) = if (isFavorite) R.drawable.ic_star_black_24dp else R.drawable.ic_star_border_black_24dp
+
 }

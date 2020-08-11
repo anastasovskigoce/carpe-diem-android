@@ -6,7 +6,17 @@ package com.alanford.carpediem.quotedetails
 //
 sealed class QuoteDetailsAction {
     /**
-     * TODO update this text here
+     * Share button clicked
      */
-    data class Share(val quoteText: String): QuoteDetailsAction()
+    data class Share(val quoteText: String) : QuoteDetailsAction()
+
+    /**
+     * Add to favorites button clicked
+     */
+    object FavoritesAdd : QuoteDetailsAction()
+
+    /**
+     * Add to favorites button clicked
+     */
+    object FavoritesRemove : QuoteDetailsAction()
 }

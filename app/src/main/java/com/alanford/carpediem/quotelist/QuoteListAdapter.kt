@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alanford.carpediem.R
 import com.alanford.carpediem.data.Quote
 
-// n adapter that will provide us with a list of quotes
+// An adapter that will provide us with a list of quotes
 // Created by ganastasovski on 7/23/20.
 // Copyright (c) 2020 alanford. All rights reserved.
 //

@@ -40,7 +40,9 @@
     <dimen name="padding_medium">16dp</dimen>
     <dimen name="padding_medium_large">24dp</dimen>
 
-
+    <!--    Card-->
+    <dimen name="elevation">6dp</dimen>
+    <dimen name="corner_radius">6dp</dimen>
 
     <!--    Height-->
     <dimen name="list_row_height">72dp</dimen>
