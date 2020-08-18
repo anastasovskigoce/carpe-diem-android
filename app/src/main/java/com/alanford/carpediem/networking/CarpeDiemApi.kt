@@ -12,6 +12,6 @@ interface CarpeDiemApi {
     /**
      * Get the list of quotes
      */
-    @GET("/quotes")
+    @GET("/top-quotes")
     fun fetchQuotes(): Call<List<Quote>>
 }

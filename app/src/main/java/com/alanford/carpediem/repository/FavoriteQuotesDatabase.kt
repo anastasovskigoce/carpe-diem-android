@@ -2,7 +2,6 @@ package com.alanford.carpediem.repository
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
 import com.alanford.carpediem.data.Quote
 
 // The database will contain the list of the user's favorite quotes
