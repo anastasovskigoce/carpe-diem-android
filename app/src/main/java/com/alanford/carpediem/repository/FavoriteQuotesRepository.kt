@@ -16,7 +16,7 @@ class FavoriteQuotesRepository private constructor(context: Context) {
         context.applicationContext,
         FavoriteQuotesDatabase::class.java,
         DATABASE_NAME
-    ).fallbackToDestructiveMigration().build()
+    ).build()
 
     private val executor = Executors.newSingleThreadExecutor()
 

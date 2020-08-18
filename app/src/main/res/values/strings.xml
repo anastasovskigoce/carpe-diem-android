@@ -10,7 +10,7 @@
     <string name="such_emptiness">Wow… such emptiness. Start adding quotes to have them show up in your favorites list</string>
 
     <!--    Main - top rated quotes-->
-    <string name="top_rated_quote">Top Rated Quotes</string>
+    <string name="top_rated_quote">Top 15 Rated Quotes</string>
     <string name="rating">Rating:</string>
     <string name="error_top_rated_quotes">Awww… snap :( An error occurred while fetching the quotes from the server. Please try again later!</string>
 
