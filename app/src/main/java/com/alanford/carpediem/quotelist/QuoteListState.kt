@@ -21,4 +21,9 @@ sealed class QuoteListState {
      * An error occurred getting the quotes from the API, show the error screen
      */
     object ErrorState : QuoteListState()
+
+    /**
+     * The user searched for quotes by an author but the API did not find any quotes by that author
+     */
+    object NoQuotesFoundByAuthor : QuoteListState()
 }

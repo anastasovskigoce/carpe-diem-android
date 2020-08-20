@@ -12,6 +12,20 @@
         android:minWidth="50dp" />
 
     <TextView
+        android:id="@+id/no_quote_found_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:drawableTop="@drawable/ic_no_quotes_found"
+        android:drawableTint="@color/secondary_text"
+        android:text="@string/no_quotes_found"
+        android:textColor="@color/secondary_text"
+        android:textSize="@dimen/text_size_medium"
+        android:visibility="gone" />
+
+    <TextView
         android:id="@+id/error_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

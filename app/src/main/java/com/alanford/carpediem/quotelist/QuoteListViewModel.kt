@@ -26,10 +26,7 @@ class QuoteListViewModel : ViewModel() {
     }
 
     fun fetchQuotes() {
-        // we only want to fetch the list of quotes if it is not present
-        if(_quotesLiveData.value is QuoteListState.ListFetchedState){
-            return
-        }
+        _quotesLiveData.value = QuoteListState.LoadingState
 
         val quotesRequest: Call<List<Quote>> = network.carpeDiemApi.fetchQuotes()
 
@@ -41,6 +38,24 @@ class QuoteListViewModel : ViewModel() {
             override fun onResponse(call: Call<List<Quote>>, response: Response<List<Quote>>) {
                 val quotesResponse = response.body() ?: mutableListOf()
                 _quotesLiveData.value = QuoteListState.ListFetchedState(quotesResponse)
+            }
+        })
+    }
+
+    fun searchQuotesByAuthor(query: String) {
+        // show loading bar
+        _quotesLiveData.value = QuoteListState.LoadingState
+
+        val quotesRequest: Call<List<Quote>> = network.carpeDiemApi.searchQuotes(query)
+
+        quotesRequest.enqueue(object : Callback<List<Quote>> {
+            override fun onFailure(call: Call<List<Quote>>, t: Throwable) {
+                _quotesLiveData.value = QuoteListState.ErrorState
+            }
+
+            override fun onResponse(call: Call<List<Quote>>, response: Response<List<Quote>>) {
+                val quotesResponse = response.body() ?: mutableListOf()
+                _quotesLiveData.value = if (quotesResponse.isEmpty()) QuoteListState.NoQuotesFoundByAuthor else QuoteListState.ListFetchedState(quotesResponse)
             }
         })
     }

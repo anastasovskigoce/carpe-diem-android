@@ -10,9 +10,11 @@
         android:layout_gravity="center"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginStart="@dimen/margin_medium"
+        android:drawableTint="@color/secondary_text"
+        android:drawableTop="@drawable/ic_no_quotes_found"
         android:text="@string/such_emptiness"
         android:textColor="@color/secondary_text"
-        android:textSize="@dimen/text_size_large"
+        android:textSize="@dimen/text_size_medium"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
