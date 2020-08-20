@@ -3,6 +3,7 @@ package com.alanford.carpediem.networking
 import com.alanford.carpediem.data.Quote
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 // Use this interface to interact with the Carpe Diem API
 // Created by ganastasovski on 7/28/20.
@@ -14,4 +15,7 @@ interface CarpeDiemApi {
      */
     @GET("/top-quotes")
     fun fetchQuotes(): Call<List<Quote>>
+
+    @GET("/quote-by-author")
+    fun searchQuotes(@Query("authorName") query: String): Call<List<Quote>>
 }

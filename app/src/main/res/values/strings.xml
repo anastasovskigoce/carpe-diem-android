@@ -4,15 +4,18 @@
     <string name="app_name">Carpe Diem</string>
     <string name="quoteTitle">Quote</string>
     <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="clear">Clear Search</string>
 
     <!--    Favorites-->
     <string name="favorites">Favorites</string>
     <string name="such_emptiness">Wow… such emptiness. Start adding quotes to have them show up in your favorites list</string>
 
     <!--    Main - top rated quotes-->
-    <string name="top_rated_quote">Top 15 Rated Quotes</string>
+    <string name="top_rated_quote">Top Rated Quotes</string>
     <string name="rating">Rating:</string>
-    <string name="error_top_rated_quotes">Awww… snap :( An error occurred while fetching the quotes from the server. Please try again later!</string>
+    <string name="error_top_rated_quotes">Awww… snap! An error occurred while fetching the quotes from the server. Please try again later!</string>
+    <string name="no_quotes_found">No quotes found by that author. Perhaps try another author?</string>
 
     <!--    Quote Detail-->
     <string name="quote_detail_error_sharing">"An error occurred while retrieving this quote"</string>
