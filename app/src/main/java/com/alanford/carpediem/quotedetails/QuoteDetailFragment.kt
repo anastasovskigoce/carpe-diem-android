@@ -13,12 +13,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
 import com.alanford.carpediem.R
 import com.alanford.carpediem.extensions.setButtonFade
-import com.alanford.carpediem.repository.FavoriteQuotesRepository
 
 /**
  *  This Fragment will display the quote details
  */
-class QuoteFragment : Fragment() {
+class QuoteDetailFragment : Fragment() {
 
     private lateinit var quoteTextView: TextView
     private lateinit var authorTextView: TextView
@@ -30,7 +29,7 @@ class QuoteFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val safeArgs: QuoteFragmentArgs by navArgs()
+        val safeArgs: QuoteDetailFragmentArgs by navArgs()
         val quote = safeArgs.quote
 
         quoteViewModel = ViewModelProviders.of(this).get(QuoteViewModel::class.java)

@@ -21,7 +21,7 @@
 
     <fragment
         android:id="@+id/quoteDetailFragment"
-        android:name="com.alanford.carpediem.quotedetails.QuoteFragment"
+        android:name="com.alanford.carpediem.quotedetails.QuoteDetailFragment"
         android:label="@string/quoteTitle"
         tools:layout="@layout/quote_detail">
         <argument
