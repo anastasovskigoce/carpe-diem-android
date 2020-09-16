@@ -28,7 +28,12 @@
     <string name="about_text_primary">Carpe Diem is a Latin aphorism translated as SEIZE THE DAY!</string>
     <string name="about_text_secondary">Use the motivation in these daily quotes to seize the day and bring the best in you!</string>
 
+    <!--    Notifications-->
+    <string name="notification_channel_name">Receive Carpe Diems</string>
+    <string name="notification_channel_description">This channel allows you to receive Carpe Diems</string>
+
     <!--    Do not translate-->
+    <string name="quote_notification_channel_id" translatable="false">quote_notification_channel_id</string>
     <string name="lorem_ipsum_short" translatable="false">Lorem ipsum</string>
     <string name="lorem_ipsum_long" translatable="false">Maecenas vehicula eros sem, quis tristique ipsum condimentum vitae. Pellentesque in molestie tortor. Ut congue congue neque at consectetu</string>
 
