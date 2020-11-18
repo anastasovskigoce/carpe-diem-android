@@ -125,5 +125,4 @@ class QuoteDetailFragment : Fragment() {
     }
 
     private fun getFavoriteImageView(isFavorite: Boolean) = if (isFavorite) R.drawable.ic_star_black_24dp else R.drawable.ic_star_border_black_24dp
-
 }

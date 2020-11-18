@@ -23,6 +23,7 @@
     <dimen name="icon_medium">24dp</dimen>
     <dimen name="icon_large">36dp</dimen>
     <dimen name="icon_x_large">48dp</dimen>
+    <dimen name="icon_xx_large">90dp</dimen>
 
     <!--    Margin-->
     <dimen name="margin_xx_small">2dp</dimen>
