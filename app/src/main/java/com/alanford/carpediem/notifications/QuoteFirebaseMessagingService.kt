@@ -1,10 +1,18 @@
 package com.alanford.carpediem.notifications
 
 import android.app.NotificationManager
+import android.content.Context
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.alanford.carpediem.R
+import com.alanford.carpediem.networking.Networking
+import com.alanford.carpediem.networking.SubscribeToPushNotificationRequest
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
+import java.util.*
 
 // Firebase messaging service for quotes
 // Created by ganastasovski on 9/4/20.
@@ -40,7 +48,36 @@ class QuoteFirebaseMessagingService : FirebaseMessagingService() {
      * @param token The new token.
      */
     private fun sendRegistrationToServer(token: String?) {
-        // TODO: Implement this method to send token to your app server.
+        val network = Networking.get()
+        token?.let {
+            val subscribeRequest = network.carpeDiemApi.subscribe(
+                SubscribeToPushNotificationRequest(
+                    it,
+                    NotificationFrequency.DAILY.ordinal,
+                    NotificationTime.MORNING.ordinal,
+                    TimeZone.getDefault().id
+                )
+            )
+
+            subscribeRequest.enqueue(object : retrofit2.Callback<ResponseBody> {
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    // not sure what to do in this case
+                    Log.d(TAG, "onFailure: token not saved")
+                }
+
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    Log.d(TAG, "onResponse: token saved")
+                    val sharedPref = application.getSharedPreferences(getString(R.string.shared_preferences), Context.MODE_PRIVATE) ?: return
+                    with(sharedPref.edit()) {
+                        putString(getString(R.string.notification), token)
+                        putBoolean(getString(R.string.notification_on_off), true)
+                        putInt(getString(R.string.frequency), NotificationFrequency.DAILY.ordinal)
+                        putInt(getString(R.string.time), NotificationTime.MORNING.ordinal)
+                        commit()
+                    }
+                }
+            })
+        }
     }
 
     /**
