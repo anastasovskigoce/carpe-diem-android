@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
@@ -16,12 +15,12 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.*
+import com.alanford.carpediem.LoginActivity.Constants.EXTRA_CLEAR_CREDENTIALS
 import com.alanford.carpediem.data.Quote
 import com.alanford.carpediem.networking.Networking
 import com.alanford.carpediem.notifications.AUTHOR
 import com.alanford.carpediem.notifications.QUOTE_ID
 import com.alanford.carpediem.notifications.QUOTE_TEXT
-import com.alanford.carpediem.quotedetails.QuoteDetailFragmentArgs
 import com.alanford.carpediem.quotelist.QuoteListFragmentDirections
 import com.alanford.carpediem.repository.FavoriteQuotesRepository
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -111,9 +110,17 @@ class MainActivity : AppCompatActivity() {
         val navigationView = findViewById<NavigationView>(R.id.nav_view)
         if (navigationView == null) {
             menuInflater.inflate(R.menu.nav_drawer_menu, menu)
+            menu.findItem(R.id.loginActivity).setOnMenuItemClickListener {
+                logout()
+                true
+            }
             return true
         }
 
+        navigationView.menu.findItem(R.id.loginActivity).setOnMenuItemClickListener {
+            logout()
+            true
+        }
         return retValue
     }
 
@@ -158,5 +165,12 @@ class MainActivity : AppCompatActivity() {
             )
             notificationManager?.createNotificationChannel(notificationChannel)
         }
+    }
+
+    private fun logout() {
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.putExtra(EXTRA_CLEAR_CREDENTIALS, true)
+        startActivity(intent)
+        finish()
     }
 }

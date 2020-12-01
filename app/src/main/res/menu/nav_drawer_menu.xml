@@ -23,4 +23,10 @@
             android:icon="@drawable/ic_info_outline_black_24dp"
             android:title="@string/about" />
     </group>
+    <group android:id="@+id/other">
+        <item
+            android:id="@+id/loginActivity"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:title="@string/logout" />
+    </group>
 </menu>
