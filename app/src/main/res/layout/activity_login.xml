@@ -1,49 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_login_motion"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:layout_margin="@dimen/margin_medium"
-    tools:context=".LoginActivity">
-
-    <ProgressBar
-        android:id="@+id/loginProgress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:minHeight="50dp"
-        android:minWidth="50dp"
-        android:visibility="gone"/>
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:importantForAccessibility="no"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/margin_small"
-        android:src="@drawable/ic_launcher_foreground" />
-
-    <TextView
-        android:id="@+id/loginText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/login_title"
-        android:textSize="18sp" />
+    android:background="@color/primary_light"
+    app:layoutDescription="@xml/activity_login_scene"
+    tools:context=".LoginActivity"
+    tools:showPaths="true">
 
     <Button
         android:id="@+id/facebookLoginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/facebook" />
+        android:background="@color/facebook_blue"
+        android:text="@string/facebook"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="263dp"
+        tools:layout_editor_absoluteY="611dp" />
 
     <Button
         android:id="@+id/googleLoginButton"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/google" />
+        android:text="@string/google"
+        android:background="@color/google_red"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="106dp"
+        tools:layout_editor_absoluteY="659dp" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/appNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_size_extra_large"
+        android:text="@string/app_name" />
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_title"
+        android:textColor="@color/primary_text"
+        android:textSize="@dimen/text_size_medium"
+        app:layout_constraintBottom_toTopOf="@+id/facebookLoginButton" />
+
+</androidx.constraintlayout.motion.widget.MotionLayout>

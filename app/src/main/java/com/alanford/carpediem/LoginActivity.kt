@@ -3,9 +3,9 @@ package com.alanford.carpediem
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.motion.widget.MotionLayout
 import com.alanford.carpediem.LoginActivity.Constants.CONNECTION_NAME_FACEBOOK
 import com.alanford.carpediem.LoginActivity.Constants.CONNECTION_NAME_GOOGLE
 import com.alanford.carpediem.LoginActivity.Constants.EXTRA_ACCESS_TOKEN
@@ -32,9 +32,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var auth0: Auth0
     private lateinit var credentialsManager: SecureCredentialsManager
 
-    private lateinit var progress: ProgressBar
-    private lateinit var logoImage: ImageView
-    private lateinit var loginText: TextView
     private lateinit var facebookLoginButton: Button
     private lateinit var googleLoginButton: Button
 
@@ -56,9 +53,6 @@ class LoginActivity : AppCompatActivity() {
         auth0.isOIDCConformant = true
         credentialsManager = SecureCredentialsManager(this, AuthenticationAPIClient(auth0), SharedPreferencesStorage(this))
 
-        logoImage = findViewById(R.id.logo)
-        loginText = findViewById(R.id.loginText)
-        progress = findViewById(R.id.loginProgress)
         facebookLoginButton = findViewById<Button>(R.id.facebookLoginButton).apply {
             setOnClickListener {
                 login(CONNECTION_NAME_FACEBOOK)
@@ -126,51 +120,27 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(connectionName: String) {
-        showProgress()
         WebAuthProvider.login(auth0)
             .withScheme(SCHEME)
             .withConnection(connectionName)
             .withAudience(String.format(WITH_AUDIENCE, getString(R.string.com_auth0_domain)))
             .start(this@LoginActivity, object : AuthCallback {
                 override fun onFailure(dialog: Dialog) {
-                    runOnUiThread {
-                        hideProgress()
-                    }
-                    dialog.show()
+                     dialog.show()
                 }
 
                 override fun onFailure(exception: AuthenticationException) {
                     runOnUiThread {
-                        hideProgress()
                         Toast.makeText(this@LoginActivity, exception.message, Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onSuccess(credentials: Credentials) {
-                    runOnUiThread {
-                        showProgress()
-                    }
                     credentialsManager.saveCredentials(credentials)
                     showNextActivity()
                 }
             })
     }
 
-    private fun showProgress() {
-        logoImage.visibility = View.GONE
-        loginText.visibility = View.GONE
-        facebookLoginButton.visibility = View.GONE
-        googleLoginButton.visibility = View.GONE
 
-        progress.visibility = View.VISIBLE
-    }
-
-    private fun hideProgress() {
-        logoImage.visibility = View.VISIBLE
-        loginText.visibility = View.VISIBLE
-        facebookLoginButton.visibility = View.VISIBLE
-        googleLoginButton.visibility = View.VISIBLE
-
-        progress.visibility = View.GONE
-    }
 }
