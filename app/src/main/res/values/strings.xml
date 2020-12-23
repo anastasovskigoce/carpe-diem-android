@@ -42,7 +42,7 @@
     <string name="when">When do you want to receive a notification?</string>
 
     <!--    Login-->
-    <string name="login_title">Login</string>
+    <string name="login_title">Login using your favorite social media</string>
     <string name="logout">Log Out</string>
     <string name="google">Google</string>
     <string name="facebook">Facebook</string>
