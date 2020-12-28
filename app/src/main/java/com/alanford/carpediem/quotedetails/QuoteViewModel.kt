@@ -26,6 +26,14 @@ class QuoteViewModel : ViewModel() {
     val favoritesButtonClicked: LiveData<Event<QuoteDetailsAction>>
         get() = _favoritesButtonClicked
 
+    private val _thumbsDownButtonClicked = MutableLiveData<Event<QuoteDetailsAction>>()
+    val thumbsDownButtonClicked: LiveData<Event<QuoteDetailsAction>>
+        get() = _thumbsDownButtonClicked
+
+    private val _thumbsUpButtonClicked = MutableLiveData<Event<QuoteDetailsAction>>()
+    val thumbsUpButtonClicked: LiveData<Event<QuoteDetailsAction>>
+        get() = _thumbsUpButtonClicked
+
     private val favoriteQuotesRepository = FavoriteQuotesRepository.get()
     private val quoteIdLiveData = MutableLiveData<String>()
 
@@ -36,6 +44,24 @@ class QuoteViewModel : ViewModel() {
     fun loadQuote(quote: Quote) {
         _quoteLiveData.value = Event(QuoteDetailsState.LoadQuote(quote))
         quoteIdLiveData.value = quote.id
+    }
+
+    fun thumbsUpButtonClicked() {
+        val quoteDetailsState = _quoteLiveData.value?.peekContent()
+        if (quoteDetailsState != null && quoteDetailsState is QuoteDetailsState.LoadQuote) {
+            _thumbsUpButtonClicked.value = Event(
+                QuoteDetailsAction.ThumbsUp(quoteDetailsState.quote.id)
+            )
+        }
+    }
+
+    fun thumbsDownButtonClicked() {
+        val quoteDetailsState = _quoteLiveData.value?.peekContent()
+        if (quoteDetailsState != null && quoteDetailsState is QuoteDetailsState.LoadQuote) {
+            _thumbsDownButtonClicked.value = Event(
+                QuoteDetailsAction.ThumbsDown(quoteDetailsState.quote.id)
+            )
+        }
     }
 
     fun shareButtonClicked(errorText: String) {

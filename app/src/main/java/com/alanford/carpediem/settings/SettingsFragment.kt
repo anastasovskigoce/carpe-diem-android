@@ -5,12 +5,14 @@ import android.view.*
 import android.view.View.*
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.alanford.carpediem.R
+import com.google.android.material.snackbar.Snackbar
 
 
 // Settings Fragment, where you can modify your settings
@@ -28,6 +30,7 @@ class SettingsFragment : Fragment() {
     private lateinit var weeklyImageCheck: ImageView
     private lateinit var morningImageCheck: ImageView
     private lateinit var eveningImageCheck: ImageView
+    private lateinit var mainLayout: ScrollView
 
     private lateinit var settingsViewModel: SettingsViewModel
 
@@ -63,6 +66,7 @@ class SettingsFragment : Fragment() {
         weeklyImageCheck = view.findViewById(R.id.once_a_week_check)
         morningImageCheck = view.findViewById(R.id.morning_check)
         eveningImageCheck = view.findViewById(R.id.evening_check)
+        mainLayout = view.findViewById(R.id.main_layout)
 
         return view
     }
@@ -87,8 +91,7 @@ class SettingsFragment : Fragment() {
                 event.peekContent().let {
                     when (it) {
                         is SaveSideEffect.ChangesSaved -> {
-                            //todo change to a snack bar
-                            Toast.makeText(context, getString(R.string.changes_saved), Toast.LENGTH_LONG).show()
+                            Snackbar.make(mainLayout, getString(R.string.changes_saved), Snackbar.LENGTH_LONG).show()
                         }
                     }
                 }

@@ -19,4 +19,14 @@ sealed class QuoteDetailsAction {
      * Add to favorites button clicked
      */
     object FavoritesRemove : QuoteDetailsAction()
+
+    /**
+     * Thumbs up button pressed
+     */
+    data class ThumbsUp(val id: String) : QuoteDetailsAction()
+
+    /**
+     * Thumbs down button pressed
+     */
+    data class ThumbsDown(val id: String) : QuoteDetailsAction()
 }
