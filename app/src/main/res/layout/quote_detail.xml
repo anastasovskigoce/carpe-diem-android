@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/main_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,19 +34,43 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.815" />
 
+    <ImageView
+        android:id="@+id/thumbs_down"
+        android:layout_width="@dimen/icon_x_large"
+        android:layout_height="@dimen/icon_x_large"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_thumb_down_24"
+        android:tint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/thumbs_divider_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/screen_divider" />
+
+    <ImageView
+        android:id="@+id/thumbs_up"
+        android:layout_width="@dimen/icon_x_large"
+        android:layout_height="@dimen/icon_x_large"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_thumb_up_24"
+        android:tint="@color/primary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/thumbs_divider_guideline"
+        app:layout_constraintTop_toTopOf="@+id/screen_divider" />
+
     <TextView
         android:id="@+id/quote_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_medium"
         android:layout_marginEnd="@dimen/margin_medium"
         android:layout_marginStart="@dimen/margin_medium"
         android:textColor="@color/primary_text"
         android:textSize="@dimen/text_size_large"
         android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/quote_author"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/lorem_ipsum_long" />
 
     <TextView
@@ -53,10 +78,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_medium_large"
         android:textColor="@color/secondary_text"
         android:textSize="@dimen/text_size_medium_large"
+        app:layout_constraintBottom_toTopOf="@+id/screen_divider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quote_text"
         tools:text="@string/lorem_ipsum_short" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/screen_divider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/thumbs_divider_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

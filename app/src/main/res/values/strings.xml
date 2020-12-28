@@ -19,6 +19,8 @@
 
     <!--    Quote Detail-->
     <string name="quote_detail_error_sharing">"An error occurred while retrieving this quote"</string>
+    <string name="down_vote_snack">Rating reduced by -1</string>
+    <string name="up_vote_snack">Rating increased by +1</string>
 
     <!--    Settings-->
     <string name="settings">Settings</string>
