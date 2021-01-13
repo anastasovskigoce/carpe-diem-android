@@ -30,14 +30,13 @@
         tools:layout_editor_absoluteX="106dp"
         tools:layout_editor_absoluteY="659dp" />
 
-    <TextView
-        android:id="@+id/appNameText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/appLogoImage"
+        android:layout_width="@dimen/icon_x_large"
+        android:layout_height="@dimen/icon_x_large"
+        android:importantForAccessibility="no"
         android:gravity="center"
-        android:textColor="@color/primary_text"
-        android:textSize="@dimen/text_size_extra_large"
-        android:text="@string/app_name" />
+        android:src="@drawable/ic_launcher_foreground"/>
 
     <TextView
         android:id="@+id/login_title"

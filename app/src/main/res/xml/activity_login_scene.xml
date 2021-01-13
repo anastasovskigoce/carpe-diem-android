@@ -15,12 +15,12 @@
                motion:framePosition="99"
                android:alpha="0.5" />
            <KeyPosition
-               motion:motionTarget="@+id/appNameText"
+               motion:motionTarget="@+id/appLogoImage"
                motion:framePosition="30"
                motion:keyPositionType="parentRelative"
                motion:percentX="90" />
            <KeyPosition
-               motion:motionTarget="@+id/appNameText"
+               motion:motionTarget="@+id/appLogoImage"
                motion:framePosition="60"
                motion:keyPositionType="parentRelative"
                motion:percentX="-90" />
@@ -31,7 +31,7 @@
         <Constraint
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:id="@+id/appNameText"
+            android:id="@+id/appLogoImage"
             android:alpha="0"
             motion:layout_constraintEnd_toEndOf="parent"
             motion:layout_constraintStart_toStartOf="parent"
@@ -57,13 +57,13 @@
             android:alpha="0"
             android:layout_marginBottom="@dimen/margin_medium"
             motion:layout_constraintBottom_toTopOf="@+id/facebookLoginButton"
-            motion:layout_constraintStart_toStartOf="@+id/appNameText"
+            motion:layout_constraintStart_toStartOf="@+id/appLogoImage"
             motion:layout_constraintEnd_toEndOf="parent" />
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
         <Constraint
-            android:id="@+id/appNameText"
+            android:id="@+id/appLogoImage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:alpha="1"
