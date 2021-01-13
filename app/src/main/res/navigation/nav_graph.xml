@@ -52,4 +52,10 @@
         android:name="com.alanford.carpediem.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+
+    <activity
+        android:id="@+id/loginActivity2"
+        android:name="com.alanford.carpediem.LoginActivity"
+        android:label="loginActivity"
+        tools:layout="@layout/activity_login" />
 </navigation>
